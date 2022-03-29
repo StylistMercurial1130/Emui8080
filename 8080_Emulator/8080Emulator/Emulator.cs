@@ -12,12 +12,14 @@ namespace _8080_Emulator._8080Emulator
         private _8080 m_8080Context;
         private Register m_Registerset;
         private Flags m_Flags;
+        private Disassembler m_Disassembler;
 
         public Emulator()
         {
             m_8080Context = new _8080();
             m_Registerset = new Register();
             m_Flags = new Flags();
+            m_Disassembler = new Disassembler();
         }
 
 
@@ -32,13 +34,14 @@ namespace _8080_Emulator._8080Emulator
         {
             Console.WriteLine("You have reached the emuation main function ! ");
 
+            m_8080Context.Store(0x1, (ushort)0);
+            m_8080Context.Store(0x38, (ushort)1);
+            m_8080Context.Store(0xFF, (ushort)2);
+            m_8080Context.Store(0x3,(ushort)3);
 
-            for (int i = 0; i < 10; i++)
-                m_8080Context.Store(0x0, (ushort)i);
-            
-            while(m_8080Context.pc < 10)
-            {
-                m_8080Context.pc += m_8080Context.Dissasemble();
+            while(m_8080Context.pc < 4)    
+            {   
+                m_Disassembler.DissasembleInstruction(ref m_8080Context,ref m_Registerset,ref m_Flags);
             }
 
         }

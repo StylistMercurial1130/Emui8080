@@ -15,7 +15,7 @@ namespace _8080_Emulator.Intel8080
         public void SetProgramCounter(ushort pc) => this.pc = pc;
         public void SetStackPointer(ushort sp) => this.sp = sp;
         public byte Store(byte value, ushort index) => memory[index] = value;
-        public byte Fetch(ushort index) => memory[index];
+        public byte Fetch(ushort index) => (byte)memory[index];
 
         public ushort Dissasemble()
         {
@@ -54,6 +54,7 @@ namespace _8080_Emulator.Intel8080
 
             return byte_jump;
         }
+
     }
 }
   

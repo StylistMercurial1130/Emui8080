@@ -15,7 +15,7 @@ namespace _8080_Emulator.Intel8080
         public byte low { get { return _low; }  set { this._low = value; } }
         public byte high { get { return _high; } set { this._high = value; } }
 
-        public ushort JointRegisterValue() => (ushort)(low + (ushort)(high << 8));
+        public ushort JointRegisterValue() => (ushort)((high << 8) | low);
 
     };
 
